@@ -1,0 +1,597 @@
+┌──(kali㉿kali)-[~]
+└─$ sudo apt search scapy                                                                                                                              100 ⨯
+Sorting... Done
+Full Text Search... Done
+dhcpig/kali-rolling,kali-rolling 1.5-3 all
+  DHCP exhaustion script using scapy network library
+
+libcrafter/kali-rolling 1.0-0kali1 amd64
+  Library to generate and sniff network packets
+
+python3-scapy/kali-rolling,kali-rolling,now 2.4.4-4 all [installed,automatic]
+  Packet generator/sniffer and network scanner/discovery (Python 3)
+
+
+┌──(kali㉿kali)-[~]
+└─$ sudo apt install python3-scapy
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+python3-scapy is already the newest version (2.4.4-4).
+python3-scapy set to manually installed.
+The following packages were automatically installed and are no longer required:
+  fastjar gnome-desktop3-data jarwrapper libgdk-pixbuf-xlib-2.0-0 libgdk-pixbuf2.0-0 libgnome-desktop-3-19 libxkbregistry0 ruby-atomic ruby-thread-safe
+  starkiller zaproxy
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 426 not upgraded.
+
+┌──(kali㉿kali)-[~]
+└─$ scapy
+INFO: Can't import PyX. Won't be able to use psdump() or pdfdump().
+
+                     aSPY//YASa
+             apyyyyCY//////////YCa       |
+            sY//////YSpcs  scpCY//Pp     | Welcome to Scapy
+ ayp ayyyyyyySCP//Pp           syY//C    | Version 2.4.4
+ AYAsAYYYYYYYY///Ps              cY//S   |
+         pCCCCY//p          cSSps y//Y   | https://github.com/secdev/scapy
+         SPPPP///a          pP///AC//Y   |
+              A//A            cyP////C   | Have fun!
+              p///Ac            sC///a   |
+              P////YCpc           A//A   | We are in France, we say Skappee.
+       scccccp///pSP///p          p//Y   | OK? Merci.
+      sY/////////y  caa           S//P   |             -- Sebastien Chabal
+       cayCyayP//Ya              pY/Ya   |
+        sY/PsY////YCc          aC//Yp
+         sc  sccaCY//PCypaapyCP//YSs
+                  spCPY//////YPSps
+                       ccaacs
+                                       using IPython 7.22.0
+>>> IP
+scapy.layers.inet.IP
+>>> ls(IP)
+version    : BitField  (4 bits)                  = (4)
+ihl        : BitField  (4 bits)                  = (None)
+tos        : XByteField                          = (0)
+len        : ShortField                          = (None)
+id         : ShortField                          = (1)
+flags      : FlagsField  (3 bits)                = (<Flag 0 ()>)
+frag       : BitField  (13 bits)                 = (0)
+ttl        : ByteField                           = (64)
+proto      : ByteEnumField                       = (0)
+chksum     : XShortField                         = (None)
+src        : SourceIPField                       = (None)
+dst        : DestIPField                         = (None)
+options    : PacketListField                     = ([])
+>>> p_ip=IP(src="87.252.140.126")
+>>> ls(IP)
+version    : BitField  (4 bits)                  = (4)
+ihl        : BitField  (4 bits)                  = (None)
+tos        : XByteField                          = (0)
+len        : ShortField                          = (None)
+id         : ShortField                          = (1)
+flags      : FlagsField  (3 bits)                = (<Flag 0 ()>)
+frag       : BitField  (13 bits)                 = (0)
+ttl        : ByteField                           = (64)
+proto      : ByteEnumField                       = (0)
+chksum     : XShortField                         = (None)
+src        : SourceIPField                       = (None)
+dst        : DestIPField                         = (None)
+options    : PacketListField                     = ([])
+>>> ls(p_ip)
+version    : BitField  (4 bits)                  = 4               (4)
+ihl        : BitField  (4 bits)                  = None            (None)
+tos        : XByteField                          = 0               (0)
+len        : ShortField                          = None            (None)
+id         : ShortField                          = 1               (1)
+flags      : FlagsField  (3 bits)                = <Flag 0 ()>     (<Flag 0 ()>)
+frag       : BitField  (13 bits)                 = 0               (0)
+ttl        : ByteField                           = 64              (64)
+proto      : ByteEnumField                       = 0               (0)
+chksum     : XShortField                         = None            (None)
+src        : SourceIPField                       = '87.252.140.126' (None)
+dst        : DestIPField                         = '127.0.0.1'     (None)
+options    : PacketListField                     = []              ([])
+>>> p_ip=IP(dst="87.252.140.126")
+>>> ls(p_ip)
+version    : BitField  (4 bits)                  = 4               (4)
+ihl        : BitField  (4 bits)                  = None            (None)
+tos        : XByteField                          = 0               (0)
+len        : ShortField                          = None            (None)
+id         : ShortField                          = 1               (1)
+flags      : FlagsField  (3 bits)                = <Flag 0 ()>     (<Flag 0 ()>)
+frag       : BitField  (13 bits)                 = 0               (0)
+ttl        : ByteField                           = 64              (64)
+proto      : ByteEnumField                       = 0               (0)
+chksum     : XShortField                         = None            (None)
+src        : SourceIPField                       = '10.10.10.130'  (None)
+dst        : DestIPField                         = '87.252.140.126' (None)
+options    : PacketListField                     = []              ([])
+>>> ls (TCP)
+sport      : ShortEnumField                      = (20)
+dport      : ShortEnumField                      = (80)
+seq        : IntField                            = (0)
+ack        : IntField                            = (0)
+dataofs    : BitField  (4 bits)                  = (None)
+reserved   : BitField  (3 bits)                  = (0)
+flags      : FlagsField  (9 bits)                = (<Flag 2 (S)>)
+window     : ShortField                          = (8192)
+chksum     : XShortField                         = (None)
+urgptr     : ShortField                          = (0)
+options    : TCPOptionsField                     = (b'')
+>>> p_ip / TCP(dport=21)
+<IP  frag=0 proto=tcp dst=87.252.140.126 |<TCP  dport=ftp |>>
+>>> p_tcp = p_ip / TCP(dport=21)
+>>> ls(p_tcp)
+version    : BitField  (4 bits)                  = 4               (4)
+ihl        : BitField  (4 bits)                  = None            (None)
+tos        : XByteField                          = 0               (0)
+len        : ShortField                          = None            (None)
+id         : ShortField                          = 1               (1)
+flags      : FlagsField  (3 bits)                = <Flag 0 ()>     (<Flag 0 ()>)
+frag       : BitField  (13 bits)                 = 0               (0)
+ttl        : ByteField                           = 64              (64)
+proto      : ByteEnumField                       = 6               (0)
+chksum     : XShortField                         = None            (None)
+src        : SourceIPField                       = '10.10.10.130'  (None)
+dst        : DestIPField                         = '87.252.140.126' (None)
+options    : PacketListField                     = []              ([])
+--
+sport      : ShortEnumField                      = 20              (20)
+dport      : ShortEnumField                      = 21              (80)
+seq        : IntField                            = 0               (0)
+ack        : IntField                            = 0               (0)
+dataofs    : BitField  (4 bits)                  = None            (None)
+reserved   : BitField  (3 bits)                  = 0               (0)
+flags      : FlagsField  (9 bits)                = <Flag 2 (S)>    (<Flag 2 (S)>)
+window     : ShortField                          = 8192            (8192)
+chksum     : XShortField                         = None            (None)
+urgptr     : ShortField                          = 0               (0)
+options    : TCPOptionsField                     = []              (b'')
+>>> ret=sendp(p_tcp)
+---------------------------------------------------------------------------
+PermissionError                           Traceback (most recent call last)
+<ipython-input-12-1b2fc5ae9a44> in <module>
+----> 1 ret=sendp(p_tcp)
+
+/usr/lib/python3/dist-packages/scapy/sendrecv.py in sendp(x, inter, loop, iface, iface_hint, count, verbose, realtime, return_packets, socket, *args, **kargs)
+    374         iface = conf.route.route(iface_hint)[0]
+    375     need_closing = socket is None
+--> 376     socket = socket or conf.L2socket(iface=iface, *args, **kargs)
+    377     results = __gen_send(socket, x, inter=inter, loop=loop,
+    378                          count=count, verbose=verbose,
+
+/usr/lib/python3/dist-packages/scapy/arch/linux.py in __init__(self, iface, type, promisc, filter, nofilter, monitor)
+    396                 "The 'monitor' argument has no effect on native linux sockets."
+    397             )
+--> 398         self.ins = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(type))  # noqa: E501
+    399         if not nofilter:
+    400             if conf.except_filter:
+
+/usr/lib/python3.9/socket.py in __init__(self, family, type, proto, fileno)
+    230             if proto == -1:
+    231                 proto = 0
+--> 232         _socket.socket.__init__(self, family, type, proto, fileno)
+    233         self._io_refs = 0
+    234         self._closed = False
+
+PermissionError: [Errno 1] Operation not permitted
+>>> exit()
+
+┌──(kali㉿kali)-[~]
+└─$ sudo scapy
+[sudo] password for kali:
+INFO: Can't import PyX. Won't be able to use psdump() or pdfdump().
+
+                     aSPY//YASa
+             apyyyyCY//////////YCa       |
+            sY//////YSpcs  scpCY//Pp     | Welcome to Scapy
+ ayp ayyyyyyySCP//Pp           syY//C    | Version 2.4.4
+ AYAsAYYYYYYYY///Ps              cY//S   |
+         pCCCCY//p          cSSps y//Y   | https://github.com/secdev/scapy
+         SPPPP///a          pP///AC//Y   |
+              A//A            cyP////C   | Have fun!
+              p///Ac            sC///a   |
+              P////YCpc           A//A   | To craft a packet, you have to be a
+       scccccp///pSP///p          p//Y   | packet, and learn how to swim in
+      sY/////////y  caa           S//P   | the wires and in the waves.
+       cayCyayP//Ya              pY/Ya   |        -- Jean-Claude Van Damme
+        sY/PsY////YCc          aC//Yp    |
+         sc  sccaCY//PCypaapyCP//YSs
+                  spCPY//////YPSps
+                       ccaacs
+                                       using IPython 7.22.0
+>>> sendp(p_tcp)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-b516a92d717a> in <module>
+----> 1 sendp(p_tcp)
+
+NameError: name 'p_tcp' is not defined
+>>> p_ip=IP(src="87.252.140.126")
+>>> p_ip=IP(dst="87.252.140.126")
+>>> p_tcp = p_ip / TCP(dport=21)
+>>> sendp(p_tcp)
+.
+Sent 1 packets.
+>>> resp=sendp(p_tcp,return_packets=True)
+.
+Sent 1 packets.
+>>> resp
+<PacketList: TCP:1 UDP:0 ICMP:0 Other:0>
+>>> resp.show()
+0000 IP / TCP 10.10.10.130:ftp_data > 87.252.140.126:ftp S
+>>> p_tcp.show()
+###[ IP ]###
+  version= 4
+  ihl= None
+  tos= 0x0
+  len= None
+  id= 1
+  flags=
+  frag= 0
+  ttl= 64
+  proto= tcp
+  chksum= None
+  src= 10.10.10.130
+  dst= 87.252.140.126
+  \options\
+###[ TCP ]###
+     sport= ftp_data
+     dport= ftp
+     seq= 0
+     ack= 0
+     dataofs= None
+     reserved= 0
+     flags= S
+     window= 8192
+     chksum= None
+     urgptr= 0
+     options= []
+
+>>> resp[0].show()
+###[ IP ]###
+  version= 4
+  ihl= None
+  tos= 0x0
+  len= None
+  id= 1
+  flags=
+  frag= 0
+  ttl= 64
+  proto= tcp
+  chksum= None
+  src= 10.10.10.130
+  dst= 87.252.140.126
+  \options\
+###[ TCP ]###
+     sport= ftp_data
+     dport= ftp
+     seq= 0
+     ack= 0
+     dataofs= None
+     reserved= 0
+     flags= S
+     window= 8192
+     chksum= None
+     urgptr= 0
+     options= []
+
+>>> p_tcp.show()
+###[ IP ]###
+  version= 4
+  ihl= None
+  tos= 0x0
+  len= None
+  id= 1
+  flags=
+  frag= 0
+  ttl= 64
+  proto= tcp
+  chksum= None
+  src= 10.10.10.130
+  dst= 87.252.140.126
+  \options\
+###[ TCP ]###
+     sport= ftp_data
+     dport= ftp
+     seq= 0
+     ack= 0
+     dataofs= None
+     reserved= 0
+     flags= S
+     window= 8192
+     chksum= None
+     urgptr= 0
+     options= []
+
+>>> p_ftp=IP(dst="87.252.140.0/24")/TCP(dport=21)
+>>> p_ftp
+<IP  frag=0 proto=tcp dst=Net('87.252.140.0/24') |<TCP  dport=ftp |>>
+>>> resp=sendp(p_ftp,return_packets=True)
+................................................................................................................................................................................................................................................................
+Sent 256 packets.
+>>> resp.show()
+0000 IP / TCP 10.10.10.130:ftp_data > 87.252.140.0:ftp S
+0001 IP / TCP 10.10.10.130:ftp_data > 87.252.140.1:ftp S
+0002 IP / TCP 10.10.10.130:ftp_data > 87.252.140.2:ftp S
+0003 IP / TCP 10.10.10.130:ftp_data > 87.252.140.3:ftp S
+0004 IP / TCP 10.10.10.130:ftp_data > 87.252.140.4:ftp S
+0005 IP / TCP 10.10.10.130:ftp_data > 87.252.140.5:ftp S
+0006 IP / TCP 10.10.10.130:ftp_data > 87.252.140.6:ftp S
+0007 IP / TCP 10.10.10.130:ftp_data > 87.252.140.7:ftp S
+0008 IP / TCP 10.10.10.130:ftp_data > 87.252.140.8:ftp S
+0009 IP / TCP 10.10.10.130:ftp_data > 87.252.140.9:ftp S
+0010 IP / TCP 10.10.10.130:ftp_data > 87.252.140.10:ftp S
+0011 IP / TCP 10.10.10.130:ftp_data > 87.252.140.11:ftp S
+0012 IP / TCP 10.10.10.130:ftp_data > 87.252.140.12:ftp S
+0013 IP / TCP 10.10.10.130:ftp_data > 87.252.140.13:ftp S
+0014 IP / TCP 10.10.10.130:ftp_data > 87.252.140.14:ftp S
+0015 IP / TCP 10.10.10.130:ftp_data > 87.252.140.15:ftp S
+0016 IP / TCP 10.10.10.130:ftp_data > 87.252.140.16:ftp S
+0017 IP / TCP 10.10.10.130:ftp_data > 87.252.140.17:ftp S
+0018 IP / TCP 10.10.10.130:ftp_data > 87.252.140.18:ftp S
+0019 IP / TCP 10.10.10.130:ftp_data > 87.252.140.19:ftp S
+0020 IP / TCP 10.10.10.130:ftp_data > 87.252.140.20:ftp S
+0021 IP / TCP 10.10.10.130:ftp_data > 87.252.140.21:ftp S
+0022 IP / TCP 10.10.10.130:ftp_data > 87.252.140.22:ftp S
+0023 IP / TCP 10.10.10.130:ftp_data > 87.252.140.23:ftp S
+0024 IP / TCP 10.10.10.130:ftp_data > 87.252.140.24:ftp S
+0025 IP / TCP 10.10.10.130:ftp_data > 87.252.140.25:ftp S
+0026 IP / TCP 10.10.10.130:ftp_data > 87.252.140.26:ftp S
+0027 IP / TCP 10.10.10.130:ftp_data > 87.252.140.27:ftp S
+0028 IP / TCP 10.10.10.130:ftp_data > 87.252.140.28:ftp S
+0029 IP / TCP 10.10.10.130:ftp_data > 87.252.140.29:ftp S
+0030 IP / TCP 10.10.10.130:ftp_data > 87.252.140.30:ftp S
+0031 IP / TCP 10.10.10.130:ftp_data > 87.252.140.31:ftp S
+0032 IP / TCP 10.10.10.130:ftp_data > 87.252.140.32:ftp S
+0033 IP / TCP 10.10.10.130:ftp_data > 87.252.140.33:ftp S
+0034 IP / TCP 10.10.10.130:ftp_data > 87.252.140.34:ftp S
+0035 IP / TCP 10.10.10.130:ftp_data > 87.252.140.35:ftp S
+0036 IP / TCP 10.10.10.130:ftp_data > 87.252.140.36:ftp S
+0037 IP / TCP 10.10.10.130:ftp_data > 87.252.140.37:ftp S
+0038 IP / TCP 10.10.10.130:ftp_data > 87.252.140.38:ftp S
+0039 IP / TCP 10.10.10.130:ftp_data > 87.252.140.39:ftp S
+0040 IP / TCP 10.10.10.130:ftp_data > 87.252.140.40:ftp S
+0041 IP / TCP 10.10.10.130:ftp_data > 87.252.140.41:ftp S
+0042 IP / TCP 10.10.10.130:ftp_data > 87.252.140.42:ftp S
+0043 IP / TCP 10.10.10.130:ftp_data > 87.252.140.43:ftp S
+0044 IP / TCP 10.10.10.130:ftp_data > 87.252.140.44:ftp S
+0045 IP / TCP 10.10.10.130:ftp_data > 87.252.140.45:ftp S
+0046 IP / TCP 10.10.10.130:ftp_data > 87.252.140.46:ftp S
+0047 IP / TCP 10.10.10.130:ftp_data > 87.252.140.47:ftp S
+0048 IP / TCP 10.10.10.130:ftp_data > 87.252.140.48:ftp S
+0049 IP / TCP 10.10.10.130:ftp_data > 87.252.140.49:ftp S
+0050 IP / TCP 10.10.10.130:ftp_data > 87.252.140.50:ftp S
+0051 IP / TCP 10.10.10.130:ftp_data > 87.252.140.51:ftp S
+0052 IP / TCP 10.10.10.130:ftp_data > 87.252.140.52:ftp S
+0053 IP / TCP 10.10.10.130:ftp_data > 87.252.140.53:ftp S
+0054 IP / TCP 10.10.10.130:ftp_data > 87.252.140.54:ftp S
+0055 IP / TCP 10.10.10.130:ftp_data > 87.252.140.55:ftp S
+0056 IP / TCP 10.10.10.130:ftp_data > 87.252.140.56:ftp S
+0057 IP / TCP 10.10.10.130:ftp_data > 87.252.140.57:ftp S
+0058 IP / TCP 10.10.10.130:ftp_data > 87.252.140.58:ftp S
+0059 IP / TCP 10.10.10.130:ftp_data > 87.252.140.59:ftp S
+0060 IP / TCP 10.10.10.130:ftp_data > 87.252.140.60:ftp S
+0061 IP / TCP 10.10.10.130:ftp_data > 87.252.140.61:ftp S
+0062 IP / TCP 10.10.10.130:ftp_data > 87.252.140.62:ftp S
+0063 IP / TCP 10.10.10.130:ftp_data > 87.252.140.63:ftp S
+0064 IP / TCP 10.10.10.130:ftp_data > 87.252.140.64:ftp S
+0065 IP / TCP 10.10.10.130:ftp_data > 87.252.140.65:ftp S
+0066 IP / TCP 10.10.10.130:ftp_data > 87.252.140.66:ftp S
+0067 IP / TCP 10.10.10.130:ftp_data > 87.252.140.67:ftp S
+0068 IP / TCP 10.10.10.130:ftp_data > 87.252.140.68:ftp S
+0069 IP / TCP 10.10.10.130:ftp_data > 87.252.140.69:ftp S
+0070 IP / TCP 10.10.10.130:ftp_data > 87.252.140.70:ftp S
+0071 IP / TCP 10.10.10.130:ftp_data > 87.252.140.71:ftp S
+0072 IP / TCP 10.10.10.130:ftp_data > 87.252.140.72:ftp S
+0073 IP / TCP 10.10.10.130:ftp_data > 87.252.140.73:ftp S
+0074 IP / TCP 10.10.10.130:ftp_data > 87.252.140.74:ftp S
+0075 IP / TCP 10.10.10.130:ftp_data > 87.252.140.75:ftp S
+0076 IP / TCP 10.10.10.130:ftp_data > 87.252.140.76:ftp S
+0077 IP / TCP 10.10.10.130:ftp_data > 87.252.140.77:ftp S
+0078 IP / TCP 10.10.10.130:ftp_data > 87.252.140.78:ftp S
+0079 IP / TCP 10.10.10.130:ftp_data > 87.252.140.79:ftp S
+0080 IP / TCP 10.10.10.130:ftp_data > 87.252.140.80:ftp S
+0081 IP / TCP 10.10.10.130:ftp_data > 87.252.140.81:ftp S
+0082 IP / TCP 10.10.10.130:ftp_data > 87.252.140.82:ftp S
+0083 IP / TCP 10.10.10.130:ftp_data > 87.252.140.83:ftp S
+0084 IP / TCP 10.10.10.130:ftp_data > 87.252.140.84:ftp S
+0085 IP / TCP 10.10.10.130:ftp_data > 87.252.140.85:ftp S
+0086 IP / TCP 10.10.10.130:ftp_data > 87.252.140.86:ftp S
+0087 IP / TCP 10.10.10.130:ftp_data > 87.252.140.87:ftp S
+0088 IP / TCP 10.10.10.130:ftp_data > 87.252.140.88:ftp S
+0089 IP / TCP 10.10.10.130:ftp_data > 87.252.140.89:ftp S
+0090 IP / TCP 10.10.10.130:ftp_data > 87.252.140.90:ftp S
+0091 IP / TCP 10.10.10.130:ftp_data > 87.252.140.91:ftp S
+0092 IP / TCP 10.10.10.130:ftp_data > 87.252.140.92:ftp S
+0093 IP / TCP 10.10.10.130:ftp_data > 87.252.140.93:ftp S
+0094 IP / TCP 10.10.10.130:ftp_data > 87.252.140.94:ftp S
+0095 IP / TCP 10.10.10.130:ftp_data > 87.252.140.95:ftp S
+0096 IP / TCP 10.10.10.130:ftp_data > 87.252.140.96:ftp S
+0097 IP / TCP 10.10.10.130:ftp_data > 87.252.140.97:ftp S
+0098 IP / TCP 10.10.10.130:ftp_data > 87.252.140.98:ftp S
+0099 IP / TCP 10.10.10.130:ftp_data > 87.252.140.99:ftp S
+0100 IP / TCP 10.10.10.130:ftp_data > 87.252.140.100:ftp S
+0101 IP / TCP 10.10.10.130:ftp_data > 87.252.140.101:ftp S
+0102 IP / TCP 10.10.10.130:ftp_data > 87.252.140.102:ftp S
+0103 IP / TCP 10.10.10.130:ftp_data > 87.252.140.103:ftp S
+0104 IP / TCP 10.10.10.130:ftp_data > 87.252.140.104:ftp S
+0105 IP / TCP 10.10.10.130:ftp_data > 87.252.140.105:ftp S
+0106 IP / TCP 10.10.10.130:ftp_data > 87.252.140.106:ftp S
+0107 IP / TCP 10.10.10.130:ftp_data > 87.252.140.107:ftp S
+0108 IP / TCP 10.10.10.130:ftp_data > 87.252.140.108:ftp S
+0109 IP / TCP 10.10.10.130:ftp_data > 87.252.140.109:ftp S
+0110 IP / TCP 10.10.10.130:ftp_data > 87.252.140.110:ftp S
+0111 IP / TCP 10.10.10.130:ftp_data > 87.252.140.111:ftp S
+0112 IP / TCP 10.10.10.130:ftp_data > 87.252.140.112:ftp S
+0113 IP / TCP 10.10.10.130:ftp_data > 87.252.140.113:ftp S
+0114 IP / TCP 10.10.10.130:ftp_data > 87.252.140.114:ftp S
+0115 IP / TCP 10.10.10.130:ftp_data > 87.252.140.115:ftp S
+0116 IP / TCP 10.10.10.130:ftp_data > 87.252.140.116:ftp S
+0117 IP / TCP 10.10.10.130:ftp_data > 87.252.140.117:ftp S
+0118 IP / TCP 10.10.10.130:ftp_data > 87.252.140.118:ftp S
+0119 IP / TCP 10.10.10.130:ftp_data > 87.252.140.119:ftp S
+0120 IP / TCP 10.10.10.130:ftp_data > 87.252.140.120:ftp S
+0121 IP / TCP 10.10.10.130:ftp_data > 87.252.140.121:ftp S
+0122 IP / TCP 10.10.10.130:ftp_data > 87.252.140.122:ftp S
+0123 IP / TCP 10.10.10.130:ftp_data > 87.252.140.123:ftp S
+0124 IP / TCP 10.10.10.130:ftp_data > 87.252.140.124:ftp S
+0125 IP / TCP 10.10.10.130:ftp_data > 87.252.140.125:ftp S
+0126 IP / TCP 10.10.10.130:ftp_data > 87.252.140.126:ftp S
+0127 IP / TCP 10.10.10.130:ftp_data > 87.252.140.127:ftp S
+0128 IP / TCP 10.10.10.130:ftp_data > 87.252.140.128:ftp S
+0129 IP / TCP 10.10.10.130:ftp_data > 87.252.140.129:ftp S
+0130 IP / TCP 10.10.10.130:ftp_data > 87.252.140.130:ftp S
+0131 IP / TCP 10.10.10.130:ftp_data > 87.252.140.131:ftp S
+0132 IP / TCP 10.10.10.130:ftp_data > 87.252.140.132:ftp S
+0133 IP / TCP 10.10.10.130:ftp_data > 87.252.140.133:ftp S
+0134 IP / TCP 10.10.10.130:ftp_data > 87.252.140.134:ftp S
+0135 IP / TCP 10.10.10.130:ftp_data > 87.252.140.135:ftp S
+0136 IP / TCP 10.10.10.130:ftp_data > 87.252.140.136:ftp S
+0137 IP / TCP 10.10.10.130:ftp_data > 87.252.140.137:ftp S
+0138 IP / TCP 10.10.10.130:ftp_data > 87.252.140.138:ftp S
+0139 IP / TCP 10.10.10.130:ftp_data > 87.252.140.139:ftp S
+0140 IP / TCP 10.10.10.130:ftp_data > 87.252.140.140:ftp S
+0141 IP / TCP 10.10.10.130:ftp_data > 87.252.140.141:ftp S
+0142 IP / TCP 10.10.10.130:ftp_data > 87.252.140.142:ftp S
+0143 IP / TCP 10.10.10.130:ftp_data > 87.252.140.143:ftp S
+0144 IP / TCP 10.10.10.130:ftp_data > 87.252.140.144:ftp S
+0145 IP / TCP 10.10.10.130:ftp_data > 87.252.140.145:ftp S
+0146 IP / TCP 10.10.10.130:ftp_data > 87.252.140.146:ftp S
+0147 IP / TCP 10.10.10.130:ftp_data > 87.252.140.147:ftp S
+0148 IP / TCP 10.10.10.130:ftp_data > 87.252.140.148:ftp S
+0149 IP / TCP 10.10.10.130:ftp_data > 87.252.140.149:ftp S
+0150 IP / TCP 10.10.10.130:ftp_data > 87.252.140.150:ftp S
+0151 IP / TCP 10.10.10.130:ftp_data > 87.252.140.151:ftp S
+0152 IP / TCP 10.10.10.130:ftp_data > 87.252.140.152:ftp S
+0153 IP / TCP 10.10.10.130:ftp_data > 87.252.140.153:ftp S
+0154 IP / TCP 10.10.10.130:ftp_data > 87.252.140.154:ftp S
+0155 IP / TCP 10.10.10.130:ftp_data > 87.252.140.155:ftp S
+0156 IP / TCP 10.10.10.130:ftp_data > 87.252.140.156:ftp S
+0157 IP / TCP 10.10.10.130:ftp_data > 87.252.140.157:ftp S
+0158 IP / TCP 10.10.10.130:ftp_data > 87.252.140.158:ftp S
+0159 IP / TCP 10.10.10.130:ftp_data > 87.252.140.159:ftp S
+0160 IP / TCP 10.10.10.130:ftp_data > 87.252.140.160:ftp S
+0161 IP / TCP 10.10.10.130:ftp_data > 87.252.140.161:ftp S
+0162 IP / TCP 10.10.10.130:ftp_data > 87.252.140.162:ftp S
+0163 IP / TCP 10.10.10.130:ftp_data > 87.252.140.163:ftp S
+0164 IP / TCP 10.10.10.130:ftp_data > 87.252.140.164:ftp S
+0165 IP / TCP 10.10.10.130:ftp_data > 87.252.140.165:ftp S
+0166 IP / TCP 10.10.10.130:ftp_data > 87.252.140.166:ftp S
+0167 IP / TCP 10.10.10.130:ftp_data > 87.252.140.167:ftp S
+0168 IP / TCP 10.10.10.130:ftp_data > 87.252.140.168:ftp S
+0169 IP / TCP 10.10.10.130:ftp_data > 87.252.140.169:ftp S
+0170 IP / TCP 10.10.10.130:ftp_data > 87.252.140.170:ftp S
+0171 IP / TCP 10.10.10.130:ftp_data > 87.252.140.171:ftp S
+0172 IP / TCP 10.10.10.130:ftp_data > 87.252.140.172:ftp S
+0173 IP / TCP 10.10.10.130:ftp_data > 87.252.140.173:ftp S
+0174 IP / TCP 10.10.10.130:ftp_data > 87.252.140.174:ftp S
+0175 IP / TCP 10.10.10.130:ftp_data > 87.252.140.175:ftp S
+0176 IP / TCP 10.10.10.130:ftp_data > 87.252.140.176:ftp S
+0177 IP / TCP 10.10.10.130:ftp_data > 87.252.140.177:ftp S
+0178 IP / TCP 10.10.10.130:ftp_data > 87.252.140.178:ftp S
+0179 IP / TCP 10.10.10.130:ftp_data > 87.252.140.179:ftp S
+0180 IP / TCP 10.10.10.130:ftp_data > 87.252.140.180:ftp S
+0181 IP / TCP 10.10.10.130:ftp_data > 87.252.140.181:ftp S
+0182 IP / TCP 10.10.10.130:ftp_data > 87.252.140.182:ftp S
+0183 IP / TCP 10.10.10.130:ftp_data > 87.252.140.183:ftp S
+0184 IP / TCP 10.10.10.130:ftp_data > 87.252.140.184:ftp S
+0185 IP / TCP 10.10.10.130:ftp_data > 87.252.140.185:ftp S
+0186 IP / TCP 10.10.10.130:ftp_data > 87.252.140.186:ftp S
+0187 IP / TCP 10.10.10.130:ftp_data > 87.252.140.187:ftp S
+0188 IP / TCP 10.10.10.130:ftp_data > 87.252.140.188:ftp S
+0189 IP / TCP 10.10.10.130:ftp_data > 87.252.140.189:ftp S
+0190 IP / TCP 10.10.10.130:ftp_data > 87.252.140.190:ftp S
+0191 IP / TCP 10.10.10.130:ftp_data > 87.252.140.191:ftp S
+0192 IP / TCP 10.10.10.130:ftp_data > 87.252.140.192:ftp S
+0193 IP / TCP 10.10.10.130:ftp_data > 87.252.140.193:ftp S
+0194 IP / TCP 10.10.10.130:ftp_data > 87.252.140.194:ftp S
+0195 IP / TCP 10.10.10.130:ftp_data > 87.252.140.195:ftp S
+0196 IP / TCP 10.10.10.130:ftp_data > 87.252.140.196:ftp S
+0197 IP / TCP 10.10.10.130:ftp_data > 87.252.140.197:ftp S
+0198 IP / TCP 10.10.10.130:ftp_data > 87.252.140.198:ftp S
+0199 IP / TCP 10.10.10.130:ftp_data > 87.252.140.199:ftp S
+0200 IP / TCP 10.10.10.130:ftp_data > 87.252.140.200:ftp S
+0201 IP / TCP 10.10.10.130:ftp_data > 87.252.140.201:ftp S
+0202 IP / TCP 10.10.10.130:ftp_data > 87.252.140.202:ftp S
+0203 IP / TCP 10.10.10.130:ftp_data > 87.252.140.203:ftp S
+0204 IP / TCP 10.10.10.130:ftp_data > 87.252.140.204:ftp S
+0205 IP / TCP 10.10.10.130:ftp_data > 87.252.140.205:ftp S
+0206 IP / TCP 10.10.10.130:ftp_data > 87.252.140.206:ftp S
+0207 IP / TCP 10.10.10.130:ftp_data > 87.252.140.207:ftp S
+0208 IP / TCP 10.10.10.130:ftp_data > 87.252.140.208:ftp S
+0209 IP / TCP 10.10.10.130:ftp_data > 87.252.140.209:ftp S
+0210 IP / TCP 10.10.10.130:ftp_data > 87.252.140.210:ftp S
+0211 IP / TCP 10.10.10.130:ftp_data > 87.252.140.211:ftp S
+0212 IP / TCP 10.10.10.130:ftp_data > 87.252.140.212:ftp S
+0213 IP / TCP 10.10.10.130:ftp_data > 87.252.140.213:ftp S
+0214 IP / TCP 10.10.10.130:ftp_data > 87.252.140.214:ftp S
+0215 IP / TCP 10.10.10.130:ftp_data > 87.252.140.215:ftp S
+0216 IP / TCP 10.10.10.130:ftp_data > 87.252.140.216:ftp S
+0217 IP / TCP 10.10.10.130:ftp_data > 87.252.140.217:ftp S
+0218 IP / TCP 10.10.10.130:ftp_data > 87.252.140.218:ftp S
+0219 IP / TCP 10.10.10.130:ftp_data > 87.252.140.219:ftp S
+0220 IP / TCP 10.10.10.130:ftp_data > 87.252.140.220:ftp S
+0221 IP / TCP 10.10.10.130:ftp_data > 87.252.140.221:ftp S
+0222 IP / TCP 10.10.10.130:ftp_data > 87.252.140.222:ftp S
+0223 IP / TCP 10.10.10.130:ftp_data > 87.252.140.223:ftp S
+0224 IP / TCP 10.10.10.130:ftp_data > 87.252.140.224:ftp S
+0225 IP / TCP 10.10.10.130:ftp_data > 87.252.140.225:ftp S
+0226 IP / TCP 10.10.10.130:ftp_data > 87.252.140.226:ftp S
+0227 IP / TCP 10.10.10.130:ftp_data > 87.252.140.227:ftp S
+0228 IP / TCP 10.10.10.130:ftp_data > 87.252.140.228:ftp S
+0229 IP / TCP 10.10.10.130:ftp_data > 87.252.140.229:ftp S
+0230 IP / TCP 10.10.10.130:ftp_data > 87.252.140.230:ftp S
+0231 IP / TCP 10.10.10.130:ftp_data > 87.252.140.231:ftp S
+0232 IP / TCP 10.10.10.130:ftp_data > 87.252.140.232:ftp S
+0233 IP / TCP 10.10.10.130:ftp_data > 87.252.140.233:ftp S
+0234 IP / TCP 10.10.10.130:ftp_data > 87.252.140.234:ftp S
+0235 IP / TCP 10.10.10.130:ftp_data > 87.252.140.235:ftp S
+0236 IP / TCP 10.10.10.130:ftp_data > 87.252.140.236:ftp S
+0237 IP / TCP 10.10.10.130:ftp_data > 87.252.140.237:ftp S
+0238 IP / TCP 10.10.10.130:ftp_data > 87.252.140.238:ftp S
+0239 IP / TCP 10.10.10.130:ftp_data > 87.252.140.239:ftp S
+0240 IP / TCP 10.10.10.130:ftp_data > 87.252.140.240:ftp S
+0241 IP / TCP 10.10.10.130:ftp_data > 87.252.140.241:ftp S
+0242 IP / TCP 10.10.10.130:ftp_data > 87.252.140.242:ftp S
+0243 IP / TCP 10.10.10.130:ftp_data > 87.252.140.243:ftp S
+0244 IP / TCP 10.10.10.130:ftp_data > 87.252.140.244:ftp S
+0245 IP / TCP 10.10.10.130:ftp_data > 87.252.140.245:ftp S
+0246 IP / TCP 10.10.10.130:ftp_data > 87.252.140.246:ftp S
+0247 IP / TCP 10.10.10.130:ftp_data > 87.252.140.247:ftp S
+0248 IP / TCP 10.10.10.130:ftp_data > 87.252.140.248:ftp S
+0249 IP / TCP 10.10.10.130:ftp_data > 87.252.140.249:ftp S
+0250 IP / TCP 10.10.10.130:ftp_data > 87.252.140.250:ftp S
+0251 IP / TCP 10.10.10.130:ftp_data > 87.252.140.251:ftp S
+0252 IP / TCP 10.10.10.130:ftp_data > 87.252.140.252:ftp S
+0253 IP / TCP 10.10.10.130:ftp_data > 87.252.140.253:ftp S
+0254 IP / TCP 10.10.10.130:ftp_data > 87.252.140.254:ftp S
+0255 IP / TCP 10.10.10.130:ftp_data > 87.252.140.255:ftp S
+>>> resp[0].show()
+###[ IP ]###
+  version= 4
+  ihl= None
+  tos= 0x0
+  len= None
+  id= 1
+  flags=
+  frag= 0
+  ttl= 64
+  proto= tcp
+  chksum= None
+  src= 10.10.10.130
+  dst= 87.252.140.0
+  \options\
+###[ TCP ]###
+     sport= ftp_data
+     dport= ftp
+     seq= 0
+     ack= 0
+     dataofs= None
+     reserved= 0
+     flags= S
+     window= 8192
+     chksum= None
+     urgptr= 0
+     options= []
