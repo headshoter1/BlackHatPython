@@ -1,7 +1,7 @@
 import socket
 import os
 
-HOST = '10.10.10.131'
+HOST = '10.10.10.130'
 
 
 def main():

@@ -78,5 +78,5 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         host = sys.argv[1]
     else:
-        host = '192.168.1.206'
+        host = '10.10.10.130'
     sniff(host)

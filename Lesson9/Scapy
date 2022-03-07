@@ -595,3 +595,16 @@ Sent 256 packets.
      chksum= None
      urgptr= 0
      options= []
+
+
+>>> scan_packet=IP(dst="10.10.10.131")/TCP(dport=(19,25))
+>>> ans, unans = sr(scan_packet, timeout=1)
+Begin emission:
+Finished sending 7 packets.
+.*******
+Received 8 packets, got 7 answers, remaining 0 packets
+>>> list(filter(lambda c: c[1][TCP].flags=="SA", ans))
+[(<IP  frag=0 proto=tcp dst=10.10.10.131 |<TCP  dport=ftp |>>,
+  <IP  version=4 ihl=5 tos=0x0 len=44 id=0 flags=DF frag=0 ttl=64 proto=tcp chksum=0x11b4 src=10.10.10.131 dst=10.10.10.130 |<TCP  sport=ftp dport=ftp_data seq=1224413810 ack=1 dataofs=6 reserved=0 flags=SA window=64240 chksum=0x1876 urgptr=0 options=[('MSS', 1460)] |<Padding  load='\x00\x00' |>>>),
+ (<IP  frag=0 proto=tcp dst=10.10.10.131 |<TCP  dport=ssh |>>,
+  <IP  version=4 ihl=5 tos=0x0 len=44 id=0 flags=DF frag=0 ttl=64 proto=tcp chksum=0x11b4 src=10.10.10.131 dst=10.10.10.130 |<TCP  sport=ssh dport=ftp_data seq=854857749 ack=1 dataofs=6 reserved=0 flags=SA window=64240 chksum=0x28d9 urgptr=0 options=[('MSS', 1460)] |<Padding  load='\x00\x00' |>>>)]
