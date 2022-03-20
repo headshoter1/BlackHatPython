@@ -2,6 +2,7 @@ import scapy.all as scapy
 import argparse
 from scapy.layers.l2 import ARP, Ether
 import paramiko
+import time
 
 
 def args():
@@ -40,6 +41,7 @@ def ssh_connect(ip_addr, passwd):
 
 
 if __name__ == "__main__":
+    start = time.time()
     options = args()
     devices = scan_range(options.range)
     print(devices)
@@ -49,4 +51,5 @@ if __name__ == "__main__":
         for password in lines:
             ssh_connect(i, password)
     f.close()
-    print("done")
+    end = time.time()
+    print(end - start)
