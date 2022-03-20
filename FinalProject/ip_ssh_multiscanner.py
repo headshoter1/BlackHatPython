@@ -6,11 +6,7 @@ from scapy.layers.l2 import ARP, Ether
 import paramiko
 import time
 import multiprocessing
-from multiprocessing import Lock
-
 from scapy.sendrecv import sr1
-
-
 
 def args():
     parser = argparse.ArgumentParser()
@@ -35,22 +31,16 @@ def ssh_connect(ip_addr, passwd):
     ssh.load_system_host_keys()  # default .ssh/known_hosts ssh.load_host_keys("~/.ssh/known_hosts) - custom
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
     try:
-        ssh.connect(hostname=ip_addr, username=options.user, password=passwd, timeout=3)
+        ssh.connect(hostname=ip_addr, username=options.user, password=passwd, timeout=1)
         stdin, stdout, stderr = ssh.exec_command("whoami")
-        # print(stdin)
-        # print(stderr.read())
         print("\033[32m{}".format("Successfully connected") + "\033[0m{}".format(" IP ")  + "\033[31m{}".format(ip_addr)
               + "\033[0m{}".format(" USER ") + "\033[31m{}".format(options.user)
               + "\033[0m{}".format(" PASSWORD ") + "\033[31m{}".format(password) + "\033[0m{}".format(" "))
-        # print(stdout.read().decode("UTF-8"))
         ssh.close()
-        a = ip_addr
-        print(ip_addr)
+        print(stdout)
     except:
         print("process id " + str(proc))
         print("no connection for " + ip_addr + " " + options.user + "/" + password)
-
-
 
 
 if __name__ == "__main__":
