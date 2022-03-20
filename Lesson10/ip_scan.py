@@ -18,6 +18,7 @@ def scan_range(ip_range):
     return res
 
 
+
 if __name__ == "__main__":
     options = args()
     devices = scan_range(options.range)

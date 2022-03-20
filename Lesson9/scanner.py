@@ -6,7 +6,7 @@ import sys
 import threading
 import time
 
-SUBNET = '10.10.10.0/24'
+SUBNET = '192.168.0.0/24'
 MESSAGE = 'PYTHONRULES!'
 
 class IP:
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         host = sys.argv[1]
     else:
-        host = '10.10.10.130'
+        host = '192.168.0.117'
     s = Scanner(host)
     time.sleep(10)
     t = threading.Thread(target=udp_sender)
